@@ -8,8 +8,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDubbo
 @EnableDiscoveryClient
 @SpringBootApplication
-public class LingyunshopRunApplication {
+public class ShopRunApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LingyunshopRunApplication.class, args);
+        SpringApplication.run(ShopRunApplication.class, args);
     }
 }

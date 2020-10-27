@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @since 2020-10-19 00:30:21
  */
 @RestController
-@RequestMapping("tbAddress")
+@RequestMapping("/tbAddress")
 public class TbAddressController {
     /**
      * 服务对象
@@ -28,7 +28,7 @@ public class TbAddressController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("selectOne")
+    @GetMapping("/selectOne")
     public TbAddress selectOne(Long id) {
         return this.tbAddressService.queryById(id);
     }
