@@ -39,6 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .headers().frameOptions().disable()
                 .and()
+                .authorizeRequests()
+                .antMatchers("/page/**")
+                .hasAnyRole()
+                .and()
                 .authenticationProvider(authenticationProvider())
                 .httpBasic()
                 //未登录时，进行json格式的提示，很喜欢这种写法，不用单独写一个又一个的类
@@ -53,7 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     out.flush();
                     out.close();
                 })
-
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated() //必须授权才能范围
@@ -79,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     out.close();
                 })
                 //登录成功，返回json
-                .defaultSuccessUrl("/admin/index.html")
+                .defaultSuccessUrl("/page/admin/index.html")
                 /*        .successHandler((request, response, authentication) -> {
                             Map<String, Object> map = new HashMap<String, Object>();
                             map.put("code", 200);

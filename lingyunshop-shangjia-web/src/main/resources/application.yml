@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: lingyunshop-web
+  cloud:
+    nacos:
+      discovery:
+        #server-addr: http://bot.xn--pbvz59g.xn--ses554g:2333
+        server-addr: http://localhost:8848
+        group: LINGYUNSHOP_SHANGJIA_WEB
+        namespace: ecaf7f7c-a523-4c52-8e8e-f4d907da85d4
+
+dubbo:
+  consumer:
+    timeout: 3000
+    #自己向外提供服务的service的包地址
+  protocol:
+    #dubbo协议
+    name: dubbo
+    #dubbo 协议端口（ -1 表示自增端口，从 20880 开始)
+    port: -1
+  #注册到nacos注册中心
+  registry:
+    #address: nacos://nacos.xn--pbvz59g.xn--ses554g:80
+    address: nacos://localhost:8848
+    register: true
+    subscribe: true

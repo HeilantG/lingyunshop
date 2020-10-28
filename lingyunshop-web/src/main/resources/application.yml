@@ -17,9 +17,7 @@ spring:
 dubbo:
   consumer:
     timeout: 3000
-  scan:
     #自己向外提供服务的service的包地址
-    base-packages: cn.pubinfo.project.controller
   protocol:
     #dubbo协议
     name: dubbo
