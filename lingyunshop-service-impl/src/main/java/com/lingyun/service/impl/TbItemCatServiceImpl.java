@@ -3,6 +3,7 @@ package com.lingyun.service.impl;
 import com.lingyun.dao.TbItemCatDao;
 import com.lingyun.entity.TbItemCat;
 import com.lingyun.service.TbItemCatService;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-28 14:36:26
  */
-@Service("tbItemCatService")
+@DubboService
 public class TbItemCatServiceImpl implements TbItemCatService {
     @Resource
     private TbItemCatDao tbItemCatDao;
@@ -76,4 +77,17 @@ public class TbItemCatServiceImpl implements TbItemCatService {
     public boolean deleteById(Long id) {
         return this.tbItemCatDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<TbItemCat> findByParentId(Long parentId) {
+
+        return this.tbItemCatDao.queryAll(new TbItemCat().setParentId(parentId));
+    }
+
+    @Override
+    public int deleteList(Long[] ids) {
+        return this.tbItemCatDao.deleteList(ids);
+    }
+
+
 }

@@ -53,4 +53,14 @@ public interface TbItemCatService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 根据上级id返回列表
+     *
+     * @param parentId 上级列表
+     * @return 实例列表
+     */
+    public List<TbItemCat> findByParentId(Long parentId);
+
+    public int deleteList(Long[] ids);
+
 }

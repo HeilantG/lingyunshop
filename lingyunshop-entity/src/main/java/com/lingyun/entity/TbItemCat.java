@@ -1,5 +1,11 @@
 package com.lingyun.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +14,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-10-28 14:36:02
  */
+
 public class TbItemCat implements Serializable {
     private static final long serialVersionUID = 444225436478543927L;
     /**
@@ -26,38 +33,5 @@ public class TbItemCat implements Serializable {
      * 类型id
      */
     private Long typeId;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Long typeId) {
-        this.typeId = typeId;
-    }
 
 }

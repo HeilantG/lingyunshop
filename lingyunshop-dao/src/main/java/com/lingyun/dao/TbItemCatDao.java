@@ -1,6 +1,7 @@
 package com.lingyun.dao;
 
 import com.lingyun.entity.TbItemCat;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-10-28 14:36:11
  */
+@Mapper
 public interface TbItemCatDao {
 
     /**
@@ -78,5 +80,7 @@ public interface TbItemCatDao {
      * @return 影响行数
      */
     int deleteById(Long id);
+
+    int deleteList(Long[] ids);
 
 }

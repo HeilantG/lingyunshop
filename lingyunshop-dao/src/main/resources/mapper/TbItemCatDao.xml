@@ -98,4 +98,15 @@
         where id = #{id}
     </delete>
 
+    <!--批量删除-->
+    <delete id="deleteList">
+        delete from youyougou.tb_item_cat
+        where
+        id in (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
+
 </mapper>
