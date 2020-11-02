@@ -1,8 +1,12 @@
 package com.lingyun.service;
 
+import com.lingyun.entity.TbSpecification;
+import com.lingyun.entity.TbSpecificationOption;
 import com.lingyun.entity.TbTypeTemplate;
 import com.lingyun.entity.util.PageResult;
+import com.lingyun.entity.util.Specification;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,4 +61,11 @@ public interface TbTypeTemplateService {
     PageResult<TbTypeTemplate> findPage(Integer page, Integer rows);
 
     int deleteList(Long[] ids);
+
+    /**
+     * 返回规格列表
+     * @return
+     */
+    public ArrayList<Specification<TbSpecification, TbSpecificationOption>> findSpecList(Long id);
+
 }

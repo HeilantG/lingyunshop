@@ -8,6 +8,7 @@ import java.util.Collection;
 /**
  * spring security 认证实体类
  */
+
 public class MyUserDetails implements UserDetails {
 
     private String username;

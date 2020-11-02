@@ -1,17 +1,22 @@
 package com.lingyun.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.lingyun.dao.TbBrandDao;
 import com.lingyun.dao.TbSpecificationDao;
+import com.lingyun.dao.TbSpecificationOptionDao;
 import com.lingyun.dao.TbTypeTemplateDao;
 import com.lingyun.entity.TbSpecification;
+import com.lingyun.entity.TbSpecificationOption;
 import com.lingyun.entity.TbTypeTemplate;
 import com.lingyun.entity.util.PageResult;
+import com.lingyun.entity.util.Specification;
 import com.lingyun.service.TbTypeTemplateService;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +35,9 @@ public class TbTypeTemplateServiceImpl implements TbTypeTemplateService {
 
     @Resource
     private TbBrandDao tbBrandDao;
+
+    @Resource
+    private TbSpecificationOptionDao tbSpecificationOptionDao;
 
     /**
      * 通过ID查询单条数据
@@ -121,4 +129,25 @@ public class TbTypeTemplateServiceImpl implements TbTypeTemplateService {
     public int deleteList(Long[] ids) {
         return this.tbTypeTemplateDao.deleteList(ids);
     }
+
+
+    @Override
+    public ArrayList<Specification<TbSpecification, TbSpecificationOption>> findSpecList(Long id) {
+        //查询模板
+        TbTypeTemplate typeTemplate = tbTypeTemplateDao.queryById(id);
+        //转换为实体类
+        List<TbSpecification> tbSpecifications = JSON.parseArray(typeTemplate.getSpecIds(), TbSpecification.class);
+
+        ArrayList<Specification<TbSpecification, TbSpecificationOption>> specificationList = new ArrayList<>();
+        tbSpecifications.forEach(item -> {
+            Specification<TbSpecification, TbSpecificationOption> specification = new Specification<>();
+            item = tbSpecificationDao.queryById(item.getId());
+            specification.setEntity(item);
+            List<TbSpecificationOption> tbSpecificationOptions = tbSpecificationOptionDao.queryAll(new TbSpecificationOption().setSpecId(item.getId()));
+            specification.setEntityList(tbSpecificationOptions);
+            specificationList.add(specification);
+        });
+        return specificationList;
+    }
+
 }

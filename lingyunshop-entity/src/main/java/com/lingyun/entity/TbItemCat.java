@@ -14,7 +14,11 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-10-28 14:36:02
  */
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Accessors(chain = true)
+@ToString
 public class TbItemCat implements Serializable {
     private static final long serialVersionUID = 444225436478543927L;
     /**
