@@ -62,5 +62,6 @@ public interface TbItemCatService {
     public List<TbItemCat> findByParentId(Long parentId);
 
     public int deleteList(Long[] ids);
+    public List<TbItemCat> queryAll();
 
 }

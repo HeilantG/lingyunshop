@@ -6,6 +6,9 @@ app.controller('goods_controller', function ($scope, $controller, goodsService, 
 
         $scope.image_entity = ''
         $controller('base_controller', {$scope: $scope});//继承
+        $scope.status = ['未审核', '已审核', '审核未通过', '关闭'];//商品状态
+
+        $scope.itemCatList = [];//商品分类列表
 //新增
         $scope.add = function () {
             $scope.entity.goodsDesc.introduction = editor.html();
@@ -162,6 +165,30 @@ app.controller('goods_controller', function ($scope, $controller, goodsService, 
                 }
             }
             return newList;
+        }
+
+
+        /*加载列表*/
+        $scope.findPage = function (page, row) {
+            goodsService.findPage(page, row).success(
+                function (response) {
+                    $scope.list = response.data.rows; //当前页的数据
+                    $scope.paginationConf.totalItems = response.data.total;//更新总记录数
+                }
+            )
+        };
+
+//加载商品分类列表
+        $scope.findItemCatList = function () {
+            goodsService.findItemCatList().success(
+                function (response) {
+                    console.log(response.data)
+
+                    for (var i = 0; i < response.data.length; i++) {
+                        $scope.itemCatList[response.data[i].id] = response.data[i].name;
+                    }
+                }
+            );
         }
 
 

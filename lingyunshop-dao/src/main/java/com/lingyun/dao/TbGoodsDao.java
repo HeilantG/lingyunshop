@@ -88,5 +88,5 @@ public interface TbGoodsDao {
      * @param limit  查询条数
      * @return 对象列表
      */
-    List<TbGoods> queryAllByLimitAndID(@Param("offset") int offset, @Param("limit") int limit, @Param("sellerId") String sellerId);
+    List<TbGoods> queryAllByLimitAndSellerId(@Param("offset") int offset, @Param("limit") int limit, @Param("sellerId") String sellerId);
 }

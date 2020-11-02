@@ -63,12 +63,11 @@ public class TbGoodsController {
         }
     }
 
-    @RequestMapping("/search")
-    public Result search(@RequestBody TbGoods goods, int page, int rows) {
+    @GetMapping("/search")
+    public Result search(int page, int rows) {
         //获取商家ID
-        String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
         //添加查询条件
-        goods.setSellerId(sellerId);
+        TbGoods goods = new TbGoods().setSellerId(SecurityContextHolder.getContext().getAuthentication().getName());
         return Result.success(tbGoodsService.findPage(goods, page, rows));
     }
 

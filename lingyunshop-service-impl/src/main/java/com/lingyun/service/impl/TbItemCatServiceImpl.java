@@ -4,7 +4,6 @@ import com.lingyun.dao.TbItemCatDao;
 import com.lingyun.entity.TbItemCat;
 import com.lingyun.service.TbItemCatService;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -87,6 +86,11 @@ public class TbItemCatServiceImpl implements TbItemCatService {
     @Override
     public int deleteList(Long[] ids) {
         return this.tbItemCatDao.deleteList(ids);
+    }
+
+    @Override
+    public List<TbItemCat> queryAll() {
+        return this.tbItemCatDao.queryAll(new TbItemCat());
     }
 
 

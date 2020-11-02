@@ -36,6 +36,16 @@ public class TbItemCatController {
     }
 
     /**
+     * 查询列表
+     *
+     * @return 所有满足条件的数据
+     */
+    @GetMapping("/findAll")
+    public Result findAll() {
+        return Result.success(this.tbItemCatService.queryAll());
+    }
+
+    /**
      * 保存
      *
      * @param tbItemCat 实体

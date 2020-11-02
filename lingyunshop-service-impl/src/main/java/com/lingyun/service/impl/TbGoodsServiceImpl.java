@@ -99,7 +99,7 @@ public class TbGoodsServiceImpl implements TbGoodsService {
     @Override
     public PageResult findPage(TbGoods goods, int page, int rows) {
         int size = this.tbGoodsDao.queryAll(goods).size();
-        List<TbGoods> tbGoodsList = this.tbGoodsDao.queryAllByLimitAndID(--page * rows, rows,goods.getSellerId());
+        List<TbGoods> tbGoodsList = this.tbGoodsDao.queryAllByLimitAndSellerId(--page * rows, rows,goods.getSellerId());
         return new PageResult<>(size, tbGoodsList);
     }
 }
