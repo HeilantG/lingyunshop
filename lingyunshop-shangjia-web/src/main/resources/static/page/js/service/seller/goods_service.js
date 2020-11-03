@@ -16,7 +16,7 @@ app.service('goodsService', function ($http) {
     }
     //查询实体
     this.findOne = function (id) {
-        return $http.get(GOODS_CONTROLLER + 'findOne?id=' + id);
+        return $http.get(GOODS_CONTROLLER + '/findOne?id=' + id);
     }
     //增加
     this.add = function (entity) {

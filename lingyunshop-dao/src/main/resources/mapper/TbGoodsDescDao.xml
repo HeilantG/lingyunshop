@@ -135,4 +135,11 @@
         where goods_id = #{goodsId}
     </delete>
 
+    <!--通过父类id作为筛选条件查询-->
+    <select id="queryByGoodsId" resultMap="TbGoodsDescMap">
+        select
+        goods_id, introduction, specification_items, custom_attribute_items, item_images, package_list, sale_service
+        from youyougou.tb_goods_desc
+        where goods_id = #{id}
+    </select>
 </mapper>

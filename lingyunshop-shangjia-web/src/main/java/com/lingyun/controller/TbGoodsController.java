@@ -63,6 +63,13 @@ public class TbGoodsController {
         }
     }
 
+    /**
+     * 分页
+     *
+     * @param page 页码
+     * @param rows 行数
+     * @return 实体
+     */
     @GetMapping("/search")
     public Result search(int page, int rows) {
         //获取商家ID
@@ -70,6 +77,17 @@ public class TbGoodsController {
         TbGoods goods = new TbGoods().setSellerId(SecurityContextHolder.getContext().getAuthentication().getName());
         return Result.success(tbGoodsService.findPage(goods, page, rows));
     }
+
+    /**
+     * 获取实体
+     * @param id 父类id
+     * @return
+     */
+    @GetMapping("/findOne")
+    public Result findOne(Long id){
+        return Result.success(tbGoodsService.findOne(id));
+    }
+
 
 
     /**

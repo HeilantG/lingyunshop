@@ -81,4 +81,14 @@ public interface TbGoodsDescDao {
      */
     int deleteById(Long goodsId);
 
+
+    /**
+     * 通过父类id作为筛选条件查询
+     *
+     * @param id 父类id
+     * @return 对象列表
+     */
+    TbGoodsDesc queryByGoodsId(Long id);
+
+
 }

@@ -4,7 +4,7 @@ import com.lingyun.dao.TbGoodsDao;
 import com.lingyun.dao.TbGoodsDescDao;
 import com.lingyun.dao.TbItemDao;
 import com.lingyun.entity.TbGoods;
-import com.lingyun.entity.TbSpecification;
+import com.lingyun.entity.TbGoodsDesc;
 import com.lingyun.entity.util.Goods;
 import com.lingyun.entity.util.PageResult;
 import com.lingyun.service.TbGoodsService;
@@ -20,6 +20,7 @@ import java.util.List;
  * @since 2020-10-28 17:00:05
  */
 @DubboService
+
 public class TbGoodsServiceImpl implements TbGoodsService {
     @Resource
     private TbGoodsDao tbGoodsDao;
@@ -99,7 +100,18 @@ public class TbGoodsServiceImpl implements TbGoodsService {
     @Override
     public PageResult findPage(TbGoods goods, int page, int rows) {
         int size = this.tbGoodsDao.queryAll(goods).size();
-        List<TbGoods> tbGoodsList = this.tbGoodsDao.queryAllByLimitAndSellerId(--page * rows, rows,goods.getSellerId());
+        List<TbGoods> tbGoodsList = this.tbGoodsDao.queryAllByLimitAndSellerId(--page * rows, rows, goods.getSellerId());
         return new PageResult<>(size, tbGoodsList);
+    }
+
+    @Override
+    public Goods findOne(Long id) {
+        Goods goods = new Goods();
+        TbGoods tbGoods = tbGoodsDao.queryById(id);
+        goods.setGoods(tbGoods);
+        TbGoodsDesc tbGoodsDesc = tbGoodsDescDao.queryByGoodsId(id);
+        goods.setGoodsDesc(tbGoodsDesc);
+        return goods;
+
     }
 }
